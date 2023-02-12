@@ -7,6 +7,7 @@ form.addEventListener('submit', (e)=>{
     const altura = document.querySelector('#altura').value;
     const IMC = (peso / (altura ** 2)).toFixed(1);
     let avaliacao;
+    const level = ['Abaixo do peso', 'Peso normal', 'Sobrepeso', 'Obesidade grau 1', 'Obesidade grau2', 'Obesidade grau3']
 
     if( !peso || peso <= 0 || peso >= 400)  {
         avaliacao = 'Peso inválido'
@@ -16,22 +17,22 @@ form.addEventListener('submit', (e)=>{
         result.style.background = 'rgb(255, 0, 0)'
     } else {
         if (IMC < 18.5) {
-            avaliacao = `Seu IMC é ${IMC} (Abaixo do peso)`
+            avaliacao = `Seu IMC é ${IMC} (${level[0]})`
             result.style.background = 'rgb(255, 0, 0)'
         } else if(IMC >=18.5 && IMC <= 24.9) {
-            avaliacao = `Seu IMC é ${IMC} (Peso normal)`
+            avaliacao = `Seu IMC é ${IMC} (${level[1]})`
             result.style.background = 'rgb(17, 224, 10)'
         } else if(IMC >=25 && IMC <= 29.9) {
-            avaliacao = `Seu IMC é ${IMC} (Sobrepeso)`
+            avaliacao = `Seu IMC é ${IMC} (${level[2]})`
             result.style.background = 'rgb(233, 236, 5)'
         } else if(IMC >=30 && IMC <= 34.5) {
-            avaliacao = `Seu IMC é ${IMC} (Obesidade Grau 1)`
+            avaliacao = `Seu IMC é ${IMC} (${level[3]})`
             result.style.background = 'rgb(245, 79, 2)'
         } else if(IMC >=35 && IMC <= 39.9) {
-            avaliacao = `Seu IMC é ${IMC} (Obesidade Grau 2)`
+            avaliacao = `Seu IMC é ${IMC} (${level[4]})`
             result.style.background = 'rgb(245, 10, 2)'
         } else if(IMC > 40) {
-            avaliacao = `Seu IMC é ${IMC} (Obesidade Grau 3)`
+            avaliacao = `Seu IMC é ${IMC} (${level[5]})`
             result.style.background = 'rgb(255, 0, 0)'
         }
     }
