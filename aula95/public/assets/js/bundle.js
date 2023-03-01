@@ -2,6 +2,138 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/modules/GeraCPF.js":
+/*!********************************!*\
+  !*** ./src/modules/GeraCPF.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ GeraCPF)
+/* harmony export */ });
+/* harmony import */ var _validaCPF_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validaCPF.js */ "./src/modules/validaCPF.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+var GeraCPF = /*#__PURE__*/function () {
+  function GeraCPF() {
+    _classCallCheck(this, GeraCPF);
+  }
+  _createClass(GeraCPF, [{
+    key: "rand",
+    value: function rand() {
+      var min = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 100000000;
+      var max = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 999999999;
+      return String(Math.floor(Math.random() * (max - min) + min));
+    }
+  }, {
+    key: "formatado",
+    value: function formatado(cpf) {
+      return cpf.slice(0, 3) + '.' + cpf.slice(3, 6) + '.' + cpf.slice(6, 9) + '-' + cpf.slice(9, 11);
+    }
+  }, {
+    key: "geraNovoCpf",
+    value: function geraNovoCpf() {
+      var cpfSemDigito = this.rand();
+      var digito1 = _validaCPF_js__WEBPACK_IMPORTED_MODULE_0__["default"].geraDigito(cpfSemDigito);
+      var digito2 = _validaCPF_js__WEBPACK_IMPORTED_MODULE_0__["default"].geraDigito(cpfSemDigito + digito1);
+      var novoCpf = cpfSemDigito + digito1 + digito2;
+      return this.formatado(novoCpf);
+    }
+  }]);
+  return GeraCPF;
+}();
+
+
+/***/ }),
+
+/***/ "./src/modules/validaCPF.js":
+/*!**********************************!*\
+  !*** ./src/modules/validaCPF.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ValidaCPF)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+// 705.484.450-52
+var ValidaCPF = /*#__PURE__*/function () {
+  function ValidaCPF(cpfEnviado) {
+    _classCallCheck(this, ValidaCPF);
+    Object.defineProperty(this, 'cpfLimpo', {
+      value: cpfEnviado.replace(/\D+/g, ''),
+      writable: false,
+      enumerable: false,
+      configurable: false
+    });
+  }
+  _createClass(ValidaCPF, [{
+    key: "sequencial",
+    value: function sequencial() {
+      return this.cpfLimpo.charAt(0).repeat(this.cpfLimpo.length) === this.cpfLimpo;
+    }
+  }, {
+    key: "geraNovoCpf",
+    value: function geraNovoCpf() {
+      var cpfParcial = this.cpfLimpo.slice(0, -2);
+      var digito1 = this.geraDigito(cpfParcial);
+      var digito2 = this.geraDigito(cpfParcial + digito1);
+      this.novoCpf = cpfParcial + digito1 + digito2;
+    }
+  }, {
+    key: "valida",
+    value: function valida() {
+      if (!this.cpfLimpo) return false;
+      if (typeof this.cpfLimpo !== 'string') return false;
+      if (this.cpfLimpo.length !== 11) return false;
+      if (this.sequencial()) return false;
+      this.geraNovoCpf();
+      return this.novoCpf === this.cpfLimpo;
+    }
+  }], [{
+    key: "geraDigito",
+    value: function geraDigito(cpfSemDigitos) {
+      var total = 0;
+      var reverso = cpfSemDigitos.length + 1;
+      var _iterator = _createForOfIteratorHelper(cpfSemDigitos),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var stringNumerica = _step.value;
+          total += reverso * Number(stringNumerica);
+          reverso--;
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      var digito = 11 - total % 11;
+      return digito <= 9 ? String(digito) : '0';
+    }
+  }]);
+  return ValidaCPF;
+}();
+
+console.log('opa');
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/assets/css/style.css":
 /*!************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/assets/css/style.css ***!
@@ -22,7 +154,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ":root {\r\n    --primary-color: rgb(13, 106, 134);\r\n    --primary-color-dark: rgb(9, 48, 56);\r\n    --primary-color-light: rgb(1, 204, 245);\r\n}\r\n\r\n* {\r\n    box-sizing: border-box;\r\n    outline: 0;\r\n}\r\n\r\nbody {\r\n    margin: 0;\r\n    padding: 0;\r\n    background: var(--primary-color);\r\n    font-family: 'Open Sans', sans-serif;\r\n    font-size: 1.3rem;\r\n    line-height: 1.5em;\r\n}\r\n\r\n.container {\r\n    max-width: 640px;\r\n    margin: 50px auto;\r\n    background: #fff;\r\n    padding: 20px;\r\n    border-radius: 10px;\r\n}\r\n\r\nform input, form label, form button {\r\n    display: block;\r\n    width: 100%;\r\n    margin-bottom: 10px;\r\n}\r\n\r\nform input {\r\n    font-size: 24px;\r\n    height: 50px;\r\n    padding: 0 20px;\r\n}\r\n\r\nform input:focus {\r\n    outline: 1px solid var(--primary-color);\r\n}\r\n\r\nform button {\r\n    border: none;\r\n    background: var(--primary-color);\r\n    color: #fff;\r\n    font-size: 18px;\r\n    font-weight: 700;\r\n    height: 50px;\r\n    cursor: pointer;\r\n    margin-top: 30px;\r\n}\r\n\r\nform button:hover {\r\n    background: var(--primary-color-dark);\r\n}\r\n\r\nform button:active{\r\n    background: var(--primary-color-light);\r\n}", "",{"version":3,"sources":["webpack://./src/assets/css/style.css"],"names":[],"mappings":"AAEA;IACI,kCAAkC;IAClC,oCAAoC;IACpC,uCAAuC;AAC3C;;AAEA;IACI,sBAAsB;IACtB,UAAU;AACd;;AAEA;IACI,SAAS;IACT,UAAU;IACV,gCAAgC;IAChC,oCAAoC;IACpC,iBAAiB;IACjB,kBAAkB;AACtB;;AAEA;IACI,gBAAgB;IAChB,iBAAiB;IACjB,gBAAgB;IAChB,aAAa;IACb,mBAAmB;AACvB;;AAEA;IACI,cAAc;IACd,WAAW;IACX,mBAAmB;AACvB;;AAEA;IACI,eAAe;IACf,YAAY;IACZ,eAAe;AACnB;;AAEA;IACI,uCAAuC;AAC3C;;AAEA;IACI,YAAY;IACZ,gCAAgC;IAChC,WAAW;IACX,eAAe;IACf,gBAAgB;IAChB,YAAY;IACZ,eAAe;IACf,gBAAgB;AACpB;;AAEA;IACI,qCAAqC;AACzC;;AAEA;IACI,sCAAsC;AAC1C","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');\r\n\r\n:root {\r\n    --primary-color: rgb(13, 106, 134);\r\n    --primary-color-dark: rgb(9, 48, 56);\r\n    --primary-color-light: rgb(1, 204, 245);\r\n}\r\n\r\n* {\r\n    box-sizing: border-box;\r\n    outline: 0;\r\n}\r\n\r\nbody {\r\n    margin: 0;\r\n    padding: 0;\r\n    background: var(--primary-color);\r\n    font-family: 'Open Sans', sans-serif;\r\n    font-size: 1.3rem;\r\n    line-height: 1.5em;\r\n}\r\n\r\n.container {\r\n    max-width: 640px;\r\n    margin: 50px auto;\r\n    background: #fff;\r\n    padding: 20px;\r\n    border-radius: 10px;\r\n}\r\n\r\nform input, form label, form button {\r\n    display: block;\r\n    width: 100%;\r\n    margin-bottom: 10px;\r\n}\r\n\r\nform input {\r\n    font-size: 24px;\r\n    height: 50px;\r\n    padding: 0 20px;\r\n}\r\n\r\nform input:focus {\r\n    outline: 1px solid var(--primary-color);\r\n}\r\n\r\nform button {\r\n    border: none;\r\n    background: var(--primary-color);\r\n    color: #fff;\r\n    font-size: 18px;\r\n    font-weight: 700;\r\n    height: 50px;\r\n    cursor: pointer;\r\n    margin-top: 30px;\r\n}\r\n\r\nform button:hover {\r\n    background: var(--primary-color-dark);\r\n}\r\n\r\nform button:active{\r\n    background: var(--primary-color-light);\r\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ":root {\r\n    --primary-color: rgb(13, 106, 134);\r\n    --primary-color-dark: rgb(9, 48, 56);\r\n    --primary-color-light: rgb(1, 204, 245);\r\n}\r\n\r\n* {\r\n    box-sizing: border-box;\r\n    outline: 0;\r\n}\r\n\r\nbody {\r\n    margin: 0;\r\n    padding: 0;\r\n    background: var(--primary-color);\r\n    font-family: 'Open Sans', sans-serif;\r\n    font-size: 1.3rem;\r\n    line-height: 1.5em;\r\n}\r\n\r\n.container {\r\n    max-width: 640px;\r\n    margin: 50px auto;\r\n    background: #fff;\r\n    padding: 20px;\r\n    border-radius: 10px;\r\n}\r\n\r\nform input, form label, form button {\r\n    display: block;\r\n    width: 100%;\r\n    margin-bottom: 10px;\r\n}\r\n\r\nform input {\r\n    font-size: 24px;\r\n    height: 50px;\r\n    padding: 0 20px;\r\n}\r\n\r\nform input:focus {\r\n    outline: 1px solid var(--primary-color);\r\n}\r\n\r\nform button {\r\n    border: none;\r\n    background: var(--primary-color);\r\n    color: #fff;\r\n    font-size: 18px;\r\n    font-weight: 700;\r\n    height: 50px;\r\n    cursor: pointer;\r\n    margin-top: 30px;\r\n}\r\n\r\nform button:hover {\r\n    background: var(--primary-color-dark);\r\n}\r\n\r\nform button:active{\r\n    background: var(--primary-color-light);\r\n}\r\n\r\n.container {\r\n    text-align: center;\r\n}\r\n\r\n.container h1 {\r\n    text-align: center;\r\n    margin-bottom: 40px;\r\n}\r\n\r\n.cpf-gerado {\r\n    font-size: 2em;\r\n    color: var(--primary-color);\r\n    text-align: center;\r\n    font-weight: bold;\r\n    margin-bottom: 40px;\r\n    letter-spacing: 3px;\r\n}\r\n\r\nbutton {\r\n    background-color: var(--primary-color);\r\n    color: white;\r\n    padding: 0.8em;\r\n    border-radius: 6px;\r\n    border: none;\r\n    font-size: 1em;\r\n    cursor: pointer;\r\n}\r\n\r\nbutton:hover {\r\n    background-color: var(--primary-color-dark);\r\n}\r\n\r\nbutton:active{\r\n    background-color: var(--primary-color-light);\r\n}", "",{"version":3,"sources":["webpack://./src/assets/css/style.css"],"names":[],"mappings":"AAEA;IACI,kCAAkC;IAClC,oCAAoC;IACpC,uCAAuC;AAC3C;;AAEA;IACI,sBAAsB;IACtB,UAAU;AACd;;AAEA;IACI,SAAS;IACT,UAAU;IACV,gCAAgC;IAChC,oCAAoC;IACpC,iBAAiB;IACjB,kBAAkB;AACtB;;AAEA;IACI,gBAAgB;IAChB,iBAAiB;IACjB,gBAAgB;IAChB,aAAa;IACb,mBAAmB;AACvB;;AAEA;IACI,cAAc;IACd,WAAW;IACX,mBAAmB;AACvB;;AAEA;IACI,eAAe;IACf,YAAY;IACZ,eAAe;AACnB;;AAEA;IACI,uCAAuC;AAC3C;;AAEA;IACI,YAAY;IACZ,gCAAgC;IAChC,WAAW;IACX,eAAe;IACf,gBAAgB;IAChB,YAAY;IACZ,eAAe;IACf,gBAAgB;AACpB;;AAEA;IACI,qCAAqC;AACzC;;AAEA;IACI,sCAAsC;AAC1C;;AAEA;IACI,kBAAkB;AACtB;;AAEA;IACI,kBAAkB;IAClB,mBAAmB;AACvB;;AAEA;IACI,cAAc;IACd,2BAA2B;IAC3B,kBAAkB;IAClB,iBAAiB;IACjB,mBAAmB;IACnB,mBAAmB;AACvB;;AAEA;IACI,sCAAsC;IACtC,YAAY;IACZ,cAAc;IACd,kBAAkB;IAClB,YAAY;IACZ,cAAc;IACd,eAAe;AACnB;;AAEA;IACI,2CAA2C;AAC/C;;AAEA;IACI,4CAA4C;AAChD","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');\r\n\r\n:root {\r\n    --primary-color: rgb(13, 106, 134);\r\n    --primary-color-dark: rgb(9, 48, 56);\r\n    --primary-color-light: rgb(1, 204, 245);\r\n}\r\n\r\n* {\r\n    box-sizing: border-box;\r\n    outline: 0;\r\n}\r\n\r\nbody {\r\n    margin: 0;\r\n    padding: 0;\r\n    background: var(--primary-color);\r\n    font-family: 'Open Sans', sans-serif;\r\n    font-size: 1.3rem;\r\n    line-height: 1.5em;\r\n}\r\n\r\n.container {\r\n    max-width: 640px;\r\n    margin: 50px auto;\r\n    background: #fff;\r\n    padding: 20px;\r\n    border-radius: 10px;\r\n}\r\n\r\nform input, form label, form button {\r\n    display: block;\r\n    width: 100%;\r\n    margin-bottom: 10px;\r\n}\r\n\r\nform input {\r\n    font-size: 24px;\r\n    height: 50px;\r\n    padding: 0 20px;\r\n}\r\n\r\nform input:focus {\r\n    outline: 1px solid var(--primary-color);\r\n}\r\n\r\nform button {\r\n    border: none;\r\n    background: var(--primary-color);\r\n    color: #fff;\r\n    font-size: 18px;\r\n    font-weight: 700;\r\n    height: 50px;\r\n    cursor: pointer;\r\n    margin-top: 30px;\r\n}\r\n\r\nform button:hover {\r\n    background: var(--primary-color-dark);\r\n}\r\n\r\nform button:active{\r\n    background: var(--primary-color-light);\r\n}\r\n\r\n.container {\r\n    text-align: center;\r\n}\r\n\r\n.container h1 {\r\n    text-align: center;\r\n    margin-bottom: 40px;\r\n}\r\n\r\n.cpf-gerado {\r\n    font-size: 2em;\r\n    color: var(--primary-color);\r\n    text-align: center;\r\n    font-weight: bold;\r\n    margin-bottom: 40px;\r\n    letter-spacing: 3px;\r\n}\r\n\r\nbutton {\r\n    background-color: var(--primary-color);\r\n    color: white;\r\n    padding: 0.8em;\r\n    border-radius: 6px;\r\n    border: none;\r\n    font-size: 1em;\r\n    cursor: pointer;\r\n}\r\n\r\nbutton:hover {\r\n    background-color: var(--primary-color-dark);\r\n}\r\n\r\nbutton:active{\r\n    background-color: var(--primary-color-light);\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -588,8 +720,21 @@ var __webpack_exports__ = {};
   !*** ./src/main.js ***!
   \*********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/style.css */ "./src/assets/css/style.css");
+/* harmony import */ var _modules_GeraCPF__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/GeraCPF */ "./src/modules/GeraCPF.js");
+/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/css/style.css */ "./src/assets/css/style.css");
 
+
+(function () {
+  var gera = new _modules_GeraCPF__WEBPACK_IMPORTED_MODULE_0__["default"]();
+  var cpfGerado = document.querySelector('.cpf-gerado');
+  cpfGerado.innerHTML = gera.geraNovoCpf();
+})();
+var btn = document.querySelector('.btn');
+btn.addEventListener('click', function (e) {
+  var gera = new _modules_GeraCPF__WEBPACK_IMPORTED_MODULE_0__["default"]();
+  var cpfGerado = document.querySelector('.cpf-gerado');
+  cpfGerado.innerHTML = gera.geraNovoCpf();
+});
 })();
 
 /******/ })()
