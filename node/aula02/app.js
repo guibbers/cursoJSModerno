@@ -3,6 +3,6 @@ const path = require('path')
 
 const cachorrinho = new Cachorro('Sputnik Rodrigo');
 
-// cachorrinho.latir();
+cachorrinho.latir();
 
 console.log(path.resolve(__dirname, '..', '..', 'arquivos', 'imagens'));
