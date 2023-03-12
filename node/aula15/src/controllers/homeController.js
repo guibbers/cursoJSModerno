@@ -7,9 +7,9 @@ const HomeModel = require('../models/HomemModel');
 //     .then(dados => console.log(dados))
 //     .catch(e => console.error(e));
 
-HomeModel.find()
-    .then(dados => console.log(dados))
-    .catch(e => console.error(e));
+// HomeModel.find()
+//     .then(dados => console.log(dados))
+//     .catch(e => console.error(e));
 
 exports.paginaInicial = (req, res) => {
     res.render('index');
